@@ -10,7 +10,7 @@
         </el-form-item>
         <el-form-item>
             <label for="date">Дата:</label>
-            <el-input id="date" type="date" v-model="form.date"></el-input>
+            <el-input id="date" v-model="form.date"></el-input>
         </el-form-item>
         <el-form-item>
             <button class="add-button" type="button" @click="onSubmit">Создать</button>
@@ -22,15 +22,18 @@
   export default {
     props: {
         costs: Array,
+        urlCategory: String,
+        urlValue: String
     },
     data() {
       return {
         form: {
           id: '',  
-          category: '',
-          value: '',
-          date: '',
-        }
+          category: this.$route.params.category ? this.$route.params.category : '',
+          value: this.$route.params.value ? this.$route.params.value : '',
+          date: Object.keys(this.$route.params).length ? this.getCurrentDay() : '',
+        },
+        currentDate: ''
       }
     },
     methods: {
@@ -39,7 +42,7 @@
         const d = today.getDate();
         const m = today.getMonth() + 1;
         const y = today.getFullYear();
-        return `${d}-${m}-${y}`
+        return `${y}-${m}-${d}`
       },
       onSubmit() {
         const {value, category, date} = this.form;
