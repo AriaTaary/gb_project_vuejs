@@ -20,11 +20,8 @@
 
 <script>
   export default {
-    props: {
-        costs: Array,
-        urlCategory: String,
-        urlValue: String
-    },
+    name: 'CostsForm',
+    props: ['idCount'],
     data() {
       return {
         form: {
@@ -47,7 +44,7 @@
       onSubmit() {
         const {value, category, date} = this.form;
         const data = {
-          id: this.costs.length + 1,
+          id: this.idCount + 1,
           category,
           value,
           date: date || this.getCurrentDay()

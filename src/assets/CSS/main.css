@@ -67,3 +67,30 @@
     margin-bottom: 20px;
     font-size: 20px !important;
 }
+
+.v-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.v-page_item {
+    display: flex;
+    height: 30px;
+    margin: 0 5px 30px 5px;
+    background-color: #63b5874b;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0px 10px;
+    align-items: center;
+}
+
+.v-page_item:hover {
+    cursor: pointer;
+    background-color: #63b58798;
+}
+
+.v-page_number {
+    margin: 0;
+}
