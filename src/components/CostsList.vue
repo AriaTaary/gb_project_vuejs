@@ -30,27 +30,58 @@
                     <el-button
                     size="mini"
                     class="button-admin button-change"
-                    @click="editAction(scope.$index, scope.row)">Изменить</el-button>
+                    @click="editAction(scope.row)">Изменить</el-button>
                     <el-button
                     size="mini"
                     type="danger"
                     class="button-admin button-delete"
-                    @click="deleteAction(scope.$index, scope.row)">Удалить</el-button>
+                    @click="deleteAction(scope.row)">Удалить</el-button>
                     </div>
                 </div>
                 </template>
             </el-table-column>
         </el-table>
+        <UpdateForm
+        v-if="showForm"
+            :active-item="activeItem[0]"
+            @updateCosts="updateCosts"
+        />
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import UpdateForm from '../components/UpdateForm'
 export default {
   name: 'CostsList',
+  components: {
+    UpdateForm
+  },
   props: ['list'],
+  data: () => ({
+    costsItem: {},
+    showForm: false,
+  }),
   computed: {
-    ...mapState(['activeList'])
+    ...mapState(['activeList']),
+    ...mapState(['activeItem']),
+  },
+  methods: {
+        ...mapMutations(['deleteDataFromList']),
+        ...mapMutations(['updateDataFromList']),
+        ...mapMutations(['getDataFromList']),
+        updateCosts(data) {
+            const props = {id: data.id, data: data}
+            this.updateDataFromList(props);
+            this.showForm = false;
+        },
+        editAction(row) {
+            this.getDataFromList(row.id);
+            this.showForm = true;
+        },
+        deleteAction(row) {
+            this.deleteDataFromList(row.id);
+        }
   },
 }
 </script>

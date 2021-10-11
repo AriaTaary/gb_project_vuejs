@@ -66,7 +66,6 @@ export default {
       }
     },
     costsUpdated(form){
-        console.log(form);
         this.addDataToList(form)
         this.showForm();
     },

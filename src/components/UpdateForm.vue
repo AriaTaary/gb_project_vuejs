@@ -13,16 +13,18 @@
             <el-input id="date" v-model="form.date"></el-input>
         </el-form-item>
         <el-form-item>
-            <button class="add-button" type="button" @click="onSubmit">Создать</button>
+            <button class="add-button" type="button" @click="onSubmit">Изменить</button>
         </el-form-item>
     </el-form>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  export default {
-    name: 'CostsForm',
-    data() {
+export default {
+  name: 'UpdateForm',
+  props: {
+      activeItem: Object,
+  },
+  data() {
       return {
         form: {
           id: '',  
@@ -33,15 +35,15 @@
       }
     },
     mounted() {
-      this.form.category = this.$route.name ? this.$route.name : '';
-      this.form.value = this.$route.params.value ? this.$route.params.value : '';
-      this.form.date = Object.keys(this.$route.params).length ? this.getCurrentDay() : '';
+        if (this.activeItem) {
+            this.form.id = this.activeItem.id;
+            this.form.category = this.activeItem.category;
+            this.form.value = this.activeItem.value;
+            this.form.date = this.getCurrentDay();
+        }
     },
-    computed: {
-    ...mapState(['categoryList'])
-  },
     methods: {
-      getCurrentDay(){
+      getCurrentDay() {
         const today = new Date();
         const d = today.getDate();
         const m = today.getMonth() + 1;
@@ -49,15 +51,15 @@
         return `${d}.${m}.${y}`
       },
       onSubmit() {
-        const {value, category, date} = this.form;
+        const {id, value, category, date} = this.form;
         const data = {
-          id: this.categoryList.length + 1,
+          id,
           category,
           value,
-          date: date || this.getCurrentDay()
+          date,
         }
         this.$emit('updateCosts', data);
       },
     }
-  }
+}
 </script>
