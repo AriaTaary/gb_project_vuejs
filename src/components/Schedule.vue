@@ -1,13 +1,14 @@
 <template>
   <div>
     <costs-list/>
-    <!-- <costs-form :list="activeList"/> -->
     <costs-page @choose-page="choosePageHandler"/>
-    <button class="add-button" @click="showForm">{{ this.buttonMessage }}</button>
+    <costs-links
+        :button-message="buttonMessage"
+        @showForm="showForm"
+    />
     <div v-if="showFormTag">
       <Form
-        v-bind:costs="costs"
-        v-on:updateCosts="costsUpdated"
+        @updateCosts="costsUpdated"
       />
     </div>
   </div>
@@ -17,6 +18,7 @@
 import CostsList from '../components/CostsList'
 import Form from '../components/CostsForm'
 import CostsPage from '../components/CostsPage'
+import CostsLinks from '../components/CostsLinks'
 import { mapActions, mapState, mapMutations } from 'vuex'
 
 export default {
@@ -25,6 +27,7 @@ export default {
     CostsList,
     Form,
     CostsPage,
+    CostsLinks
   },
   data: () => ({
     activeList: [],
@@ -42,28 +45,29 @@ export default {
   },
   methods: {
     ...mapActions(['fetchData']),
-    ...mapMutations(['setActiveList2']),
+    ...mapMutations(['setActiveList']),
     ...mapMutations('general', ['setFormVisible']),
     ...mapMutations(['addDataToList']),
     choosePageHandler (page) {
       const startNum = page * this.count
       const lastNum = startNum + this.count
-      this.setActiveList2(this.categoryList2.slice(startNum, lastNum))
+      this.setActiveList(this.categoryList.slice(startNum, lastNum))
     },
-    showForm(){
-      if (this.showFormTag){
+    showForm(value){
+      if (this.showFormTag || value === false){
         this.showFormTag = false;
-         this.setFormVisible(false)
+        this.setFormVisible(false)
         this.buttonMessage = 'Добавить новую статью расходов';
       }
-      else{
+      else {
         this.showFormTag = true;
-         this.setFormVisible(true)
+        this.setFormVisible(true)
         this.buttonMessage = 'Скрыть';
       }
     },
     costsUpdated(form){
-        this.addDataToCostsList(form)
+        console.log(form);
+        this.addDataToList(form)
         this.showForm();
     },
   }

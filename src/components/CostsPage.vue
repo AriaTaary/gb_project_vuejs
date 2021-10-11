@@ -5,24 +5,18 @@
         <p class="v-page_number">{{ item }}</p>
       </div>
     </template>
-    <!-- <div @click="clickHandler(index)" v-for="(item,index) in makeArray" :key="index">
-      {{ index }}
-    </div> -->
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
-  name: 'VPage',
+  name: 'CostsPage',
   props: ['list'],
   computed: {
-    ...mapState(['categoryList', 'categoryList2']),
-    makeArray () {
-      return this.categoryList
-    },
+    ...mapState(['categoryList']),
     pages () {
-      return this.categoryList2.length ? Math.ceil(this.categoryList2.length / 3) : 1
+      return this.categoryList.length ? Math.ceil(this.categoryList.length / 3) : 1
     }
   },
   methods: {

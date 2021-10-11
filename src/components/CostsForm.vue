@@ -19,20 +19,27 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'CostsForm',
-    props: ['idCount'],
     data() {
       return {
         form: {
           id: '',  
-          category: this.$route.params.category ? this.$route.params.category : '',
-          value: this.$route.params.value ? this.$route.params.value : '',
-          date: Object.keys(this.$route.params).length ? this.getCurrentDay() : '',
+          category: '',
+          value: '',
+          date: '',
         },
-        currentDate: ''
       }
     },
+    mounted() {
+      this.form.category = this.$route.name ? this.$route.name : '';
+      this.form.value = this.$route.params.value ? this.$route.params.value : '';
+      this.form.date = Object.keys(this.$route.params).length ? this.getCurrentDay() : '';
+    },
+    computed: {
+    ...mapState(['categoryList'])
+  },
     methods: {
       getCurrentDay(){
         const today = new Date();
@@ -44,7 +51,7 @@
       onSubmit() {
         const {value, category, date} = this.form;
         const data = {
-          id: this.idCount + 1,
+          id: this.categoryList.length + 1,
           category,
           value,
           date: date || this.getCurrentDay()

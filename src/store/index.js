@@ -25,30 +25,30 @@ export default new Vuex.Store({
     // },
     state: {
         categoryList: {},
-        categoryList2: [],
+        // categoryList2: {},
         activeList: [],
-        activeList2: []
+        // activeList2: [],
     },
     mutations: {
         setPaymentsListData(state, payload) {
             state.categoryList = payload
             // state.categoryList = Object.assign(state.categoryList, payload)
         },
-        setPaymentsListData2(state, payload) {
-            state.categoryList2 = payload
-        },
+        // setPaymentsListData2(state, payload) {
+        //     state.categoryList2 = payload
+        // },
+        // setActiveList(state, data) {
+        //     state.activeList = data
+        // },
         setActiveList(state, data) {
             state.activeList = data
         },
-        setActiveList2(state, data) {
-            state.activeList2 = data
-        },
+        // addDataToList(state, data) {
+        //     const lastElement = Object.keys(state.categoryList)[Object.keys(state.categoryList).length - 1] // получение последнего ключа из нашего объекта
+        //     state.categoryList[lastElement].push(data)
+        // },
         addDataToList(state, data) {
-            const lastElement = Object.keys(state.categoryList)[Object.keys(state.categoryList).length - 1] // получение последнего ключа из нашего объекта
-            state.categoryList[lastElement].push(data)
-        },
-        addDataToList2(state, data) {
-            state.categoryList2.push(data)
+            state.categoryList.push(data)
         }
     },
     // getters: {
@@ -101,10 +101,8 @@ export default new Vuex.Store({
                 .then(res => res.json())
                 .then(response => {
                     const result = [].concat(...Object.values(response))
-                    commit('setPaymentsListData', response)
-                    commit('setPaymentsListData2', result)
-                    commit('setActiveList2', result.slice(0, 3))
-                    if (page === 1) commit('setActiveList', response.page1)
+                    commit('setPaymentsListData', result)
+                    commit('setActiveList', result.slice(0, 3))
                 })
         }
     },
