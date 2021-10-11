@@ -117,3 +117,9 @@
 .links_container .add-button:not(:last-child){
     margin-right: 10px;
 }
+
+.el-button:focus, .el-button:hover {
+    color: black;
+    border-color: transparent;
+    background-color: #63b58798;
+}

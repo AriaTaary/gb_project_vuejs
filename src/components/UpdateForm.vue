@@ -20,20 +20,18 @@
 
 <script>
 export default {
-  name: 'UpdateForm',
-  props: {
-      activeItem: Object,
-  },
-  data() {
-      return {
-        form: {
-          id: '',  
-          category: '',
-          value: '',
-          date: '',
-        },
-      }
+    name: 'UpdateForm',
+    props: {
+        activeItem: Object,
     },
+    data: () => ({
+        form: {
+            id: '',  
+            category: '',
+            value: '',
+            date: '',
+        },
+    }),
     mounted() {
         if (this.activeItem) {
             this.form.id = this.activeItem.id;
@@ -43,23 +41,23 @@ export default {
         }
     },
     methods: {
-      getCurrentDay() {
-        const today = new Date();
-        const d = today.getDate();
-        const m = today.getMonth() + 1;
-        const y = today.getFullYear();
-        return `${d}.${m}.${y}`
-      },
-      onSubmit() {
-        const {id, value, category, date} = this.form;
-        const data = {
-          id,
-          category,
-          value,
-          date,
-        }
-        this.$emit('updateCosts', data);
-      },
+        getCurrentDay() {
+            const today = new Date();
+            const d = today.getDate();
+            const m = today.getMonth() + 1;
+            const y = today.getFullYear();
+            return `${d}.${m}.${y}`
+        },
+        onSubmit() {
+            const {id, value, category, date} = this.form;
+            const data = {
+            id,
+            category,
+            value,
+            date,
+            }
+            this.$emit('updateCosts', data);
+        },
     }
 }
 </script>
