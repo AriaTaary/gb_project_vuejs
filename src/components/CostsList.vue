@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="costs-list">
+        <h1>Мои расходы</h1>
         <el-table 
             class="costs_table"
             :data="activeList"

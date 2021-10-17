@@ -1,5 +1,7 @@
 <template>
   <div id="app" class="container">
+    <h1>Калькулятор</h1>
+    <Calculator/>
     <h1>Мои расходы</h1>
     <List
       v-bind:sortCosts="costsList[0]"
@@ -23,13 +25,14 @@
 import List from '../components/CostsList.vue'
 import Form from '../components/CostsForm.vue'
 import Pagination from '../components/Pagination.vue'
+import Calculator from '../components/Calculator.vue'
 
 import {mapMutations, mapActions} from 'vuex'
 
 export default {
   name: 'App',
   components: {
-    List, Form, Pagination
+    List, Form, Pagination, Calculator
   },
   data: () => ({
     costs: [],

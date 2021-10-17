@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Calculator/>
     <costs-list/>
     <costs-page @choose-page="choosePageHandler"/>
     <costs-links
@@ -19,6 +20,7 @@ import CostsList from '../components/CostsList'
 import Form from '../components/CostsForm'
 import CostsPage from '../components/CostsPage'
 import CostsLinks from '../components/CostsLinks'
+import Calculator from '../components/Calculator'
 import { mapActions, mapState, mapMutations } from 'vuex'
 
 export default {
@@ -27,7 +29,8 @@ export default {
     CostsList,
     Form,
     CostsPage,
-    CostsLinks
+    CostsLinks,
+    Calculator
   },
   data: () => ({
     activeList: [],
