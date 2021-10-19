@@ -29,27 +29,20 @@
             </el-table-column>
             <el-table-column
                 label="Операции"
-                width="200"
+                width="300"
             >
                 <template slot-scope="scope">
-                <div class="operation-buttons">
-                    <div class="buttons-row">
-                    <el-button
-                    size="mini"
-                    class="button-admin button-change"
-                    @click="editAction(scope.row)">Изменить</el-button>
-                    <el-button
-                    size="mini"
-                    type="danger"
-                    class="button-admin button-delete"
-                    @click="deleteAction(scope.row)">Удалить</el-button>
+                    <div class="v-table__points" @click="$modal.show(scope.row)">
+                        <img class="menu-button" src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png"/>
                     </div>
-                </div>
+                    <transition name="fade">
+                        <ContextMenu v-if="scope.row.id === activeID" :id="scope.row.id" @showForm="showForm"></ContextMenu>
+                    </transition>
                 </template>
             </el-table-column>
         </el-table>
         <UpdateForm
-            v-if="showForm"
+            v-if="isShownForm"
             :active-item="activeItem[0]"
             @updateCosts="updateCosts"
         />
@@ -57,38 +50,45 @@
 </template>
 
 <script>
+import ContextMenu from '@/components/ContextMenu'
 import { mapState, mapMutations } from 'vuex'
 import UpdateForm from '../components/UpdateForm'
 export default {
     name: 'CostsList',
     components: {
-        UpdateForm
+        UpdateForm,
+        ContextMenu
     },
     props: ['list'],
     data: () => ({
         costsItem: {},
-        showForm: false,
+        isShownForm: false,
+        activeID: null
     }),
     computed: {
         ...mapState(['activeList']),
         ...mapState(['activeItem']),
     },
+    mounted () {
+        this.$modal.EventBus.$on('shown', this.onShown)
+        this.$modal.EventBus.$on('hide', this.onHide)
+    },
     methods: {
-        ...mapMutations(['deleteDataFromList']),
         ...mapMutations(['updateDataFromList']),
-        ...mapMutations(['getDataFromList']),
+        onShown (params) {
+            this.activeID = params.id
+        },
+        onHide () {
+            this.activeID = null
+        },
         updateCosts(data) {
             const props = {id: data.id, data: data}
             this.updateDataFromList(props);
-            this.showForm = false;
+            this.showForm();
         },
-        editAction(row) {
-            this.getDataFromList(row.id);
-            this.showForm = true;
+        showForm(){
+            this.isShownForm ? this.isShownForm = false : this.isShownForm = true;
         },
-        deleteAction(row) {
-            this.deleteDataFromList(row.id);
-        }
     },
 }
 </script>

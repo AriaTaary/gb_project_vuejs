@@ -105,7 +105,7 @@
 .links_container {
     display: flex;
     flex-direction: row;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .links {
@@ -191,4 +191,40 @@ h1{
 
 .costs-list{
     margin-top: 30px;
+}
+
+.context-menu{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 8px;
+    right: 30px;
+}
+
+.context-menu-item{
+    height: 30px;
+    margin: 0 5px;
+    background-color: #63b5874b;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    padding: 0 5px;
+}
+
+.context-menu-item:hover{
+    cursor: pointer;
+    background-color: #63b58798;
+}
+
+.v-table__points{
+    display: flex;
+    align-items: center;
+}
+
+.menu-button:hover {
+    cursor: pointer;
 }

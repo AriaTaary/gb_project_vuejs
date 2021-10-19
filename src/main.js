@@ -6,9 +6,14 @@ import App from './App.vue';
 import store from './store'
 import router from './router'
 
+import plugin from './plugins/plugin'
+
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+
+Vue.use(plugin);
 
 new Vue({
   router,

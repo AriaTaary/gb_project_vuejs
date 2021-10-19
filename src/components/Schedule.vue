@@ -7,11 +7,10 @@
         :button-message="buttonMessage"
         @showForm="showForm"
     />
-    <div v-if="showFormTag">
-      <Form
-        @updateCosts="costsUpdated"
-      />
-    </div>
+    <Form
+      v-if="formVisible"
+      @updateCosts="costsUpdated"
+    />
   </div>
 </template>
 
