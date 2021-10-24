@@ -1,17 +1,16 @@
 <template>
   <div>
     <div class="links">
-        <!-- <button class="add-button" @click="$emit('showForm')">{{ this.buttonMessage }}</button> -->
         <div class="links_container">
-            <div class="add-button" @click="changeHandler">
-              <p>{{ formVisible ? 'Скрыть' : 'Показать' }} форму</p>
-            </div>
-            <div class="add-button" v-for="item in list" :key="item.category" @click="linkHandler(item)">
-                <p>{{item.category}}: {{item.params.value}}</p>
-            </div>
-            <div @click="clearRoute" class="add-button">
-                <p>Очистить</p>
-            </div>
+            <v-btn class="add-button" @click="changeHandler">
+              {{ formVisible ? 'Скрыть' : 'Показать' }} форму
+            </v-btn>
+            <v-btn class="add-button" v-for="item in list" :key="item.category" @click="linkHandler(item)">
+              {{item.category}}: {{item.params.value}}
+            </v-btn>
+            <v-btn class="add-button" @click="clearRoute">
+              Очистить
+            </v-btn>
         </div>
     </div>
   </div>

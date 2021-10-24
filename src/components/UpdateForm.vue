@@ -1,21 +1,27 @@
 <template>
-    <el-form ref="form" :model="form" label-width="120px">
-        <el-form-item>
-            <label for="category">Категория:</label>
-            <el-input id="category" v-model="form.category"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <label for="value">Значение:</label>
-            <el-input id="value" v-model="form.value"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <label for="date">Дата:</label>
-            <el-input id="date" v-model="form.date"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <button class="add-button" type="button" @click="onSubmit">Изменить</button>
-        </el-form-item>
-    </el-form>
+  <v-form
+    ref="form"
+    v-model="form"
+    lazy-validation
+    class="form"
+  >
+    <v-text-field
+      v-model="form.category"
+      label="Категория:"
+    ></v-text-field>
+
+    <v-text-field
+      v-model="form.value"
+      label="Значение:"
+    ></v-text-field>
+
+    <v-text-field
+      v-model="form.date"
+      label="Дата:"
+    ></v-text-field>
+
+    <v-btn @click="onSubmit">Изменить</v-btn>
+  </v-form>
 </template>
 
 <script>

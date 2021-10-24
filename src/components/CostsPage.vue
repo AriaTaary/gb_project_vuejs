@@ -1,9 +1,9 @@
 <template>
   <div class="v-page" >
     <template>
-      <div class="v-page_item" v-for="(item, index) in pages" :key="item" @click="choosePage(index)">
-        <p class="v-page_number">{{ item }}</p>
-      </div>
+        <v-btn class="v-page_item" v-for="(item, index) in pages" :key="item" @click="choosePage(index)">
+          {{ item }}
+        </v-btn>
     </template>
   </div>
 </template>

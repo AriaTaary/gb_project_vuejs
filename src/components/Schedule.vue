@@ -2,7 +2,7 @@
   <div>
     <Calculator/>
     <costs-list/>
-    <costs-page @choose-page="choosePageHandler"/>
+    <!-- <costs-page @choose-page="choosePageHandler"/> -->
     <costs-links
         :button-message="buttonMessage"
         @showForm="showForm"

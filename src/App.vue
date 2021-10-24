@@ -1,25 +1,20 @@
 <template>
-  <div id="app" class="container">
-    <router-view/>
-  </div>
+  <v-app>
+    <v-main id="app" class="container">
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+
 export default {
   name: 'App',
-  components: {
-  },
-  data () {
-    return {
-      toShow: false
-    }
-  },
-  methods: {
-    toSwitch () {
-      this.toShow = !this.toShow
-    }
-  }
-}
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style lang="scss">

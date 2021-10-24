@@ -4,11 +4,15 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .container{
-    margin: 0 10px;
+    margin: 0 50px;
+}
+
+.calculator{
+    margin-top: 20px;
 }
 
 .add-button{
@@ -133,19 +137,12 @@ h1{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    height: fit-content;
 }
 
 .calc-func{
     margin: 0 20px;
-}
-
-.calc-input{
-    height: 20px;
-}
-
-.calc-input:focus{
-    outline: none;
 }
 
 .calc-result{
@@ -153,13 +150,7 @@ h1{
 }
 
 .keyboard-button{
-    width: 30px;
-    height: 30px;
     margin: 0 5px;
-    background-color: #63b5874b;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
 }
 
 .keyboard-button:hover{
@@ -174,6 +165,7 @@ h1{
     justify-content: center;
     align-items: center;
     padding-left: 0;
+    margin-top: 20px;
 }
 
 .checkbox, .change{
@@ -190,7 +182,7 @@ h1{
 }
 
 .costs-list{
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .context-menu{
@@ -227,4 +219,12 @@ h1{
 
 .menu-button:hover {
     cursor: pointer;
+}
+
+.form {
+    margin-bottom: 20px;
+}
+
+.links {
+    margin-bottom: 20px;
 }
