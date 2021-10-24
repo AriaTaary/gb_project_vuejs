@@ -47,7 +47,7 @@ describe('Calculator operators', () => {
     })
     it('Клавиатура скрывается', async () => {
         createComponent()
-        await findLabelText('Показать/Скрыть экранную клавиатуру').trigger('click')
+        await findLabelText('Отобразить экранную клавиатуру').trigger('click')
         expect(wrapper.vm.checked).toBe(false)
     })
 
@@ -57,13 +57,16 @@ describe('Calculator operators', () => {
   ${'7'} | ${'2'} | ${'-'} | ${5}
   ${'4'} | ${'2'} | ${'/'} | ${2}
   ${'8'} | ${'2'} | ${'*'} | ${16}
+  ${'2'} | ${'5'} | ${'^'} | ${32}
+  ${'10'} | ${'4'} | ${'//'} | ${2}
+  ${'23'} | ${'10'} | ${'%'} | ${3}
   `('Проверка оператора "$operator" с числами $firstNumber и $secondNumber',
         async ({ firstNumber, secondNumber, operator, expectedResult }) => {
             createComponent()
-            await findLabelText('first').trigger('click')
+            await findLabelText('Operand 1').trigger('click')
             await findButtonByText(firstNumber).trigger('click')
 
-            await findLabelText('second').trigger('click')
+            await findLabelText('Operand 2').trigger('click')
             await findButtonByText(secondNumber).trigger('click')
 
             await findButtonByText(operator).trigger('click')
